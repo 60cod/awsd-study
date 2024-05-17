@@ -14,11 +14,12 @@ jobs:
           node-version: "20.13.1"
       - name: Install npm packages
         run: npm ci
-      - name: Install and run redis-server
+      - name: Install redis-server
         run:
           sudo apt-get update
           sudo apt-get install -y redis-server
-          redis-server --daemonize yes --requirepass test_env --port 6380
+      - name: Start redis-server
+        run: redis-server --daemonize yes --requirepass test_env --port 6380
       - name: Run test
         run: npm run test
       - name: test build
