@@ -20,7 +20,7 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
       - name: SSH and deploy
         run: |
-          ssh ${{ secrets.SSH_USERNAME }}@{{ secrets.SSH_PUBLIC_IP }} "
+          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_PUBLIC_IP }} "
             cd awsd-study
             git pull || exit 1
             npm install || exit 1
