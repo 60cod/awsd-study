@@ -12,7 +12,7 @@ export const createApp = (client: RedisClient) => {
 
     app.get("/", (request, response) => {
         response.status(200)
-            .send("Know your subject, people. Failure to do so may result in the loss of a golden opportunity. - Miss Sloane");
+            .send("Know your subject, people. Failure to do so may result in the loss of a golden opportunity.");
     });
 
     app.post("/messages", async (request, response) => {
