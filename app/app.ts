@@ -11,7 +11,8 @@ export const createApp = (client: RedisClient) => {
     app.use(express.json()) // json 형식 받기 위해 json 파싱 하는 것 넣음.
 
     app.get("/", (request, response) => {
-        response.status(200).send("hello from express");
+        response.status(200)
+            .send("Know your subject, people. Failure to do so may result in the loss of a golden opportunity. - Miss Sloane");
     });
 
     app.post("/messages", async (request, response) => {
