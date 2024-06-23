@@ -19,3 +19,13 @@ const startServer = async () => {
 };
 
 startServer();
+
+// 시그널 잘 받는지 먼저 확인
+process.on('SIGTERM', () => {
+    console.log("SIGTERM!!");
+    process.exit();
+});
+process.on('SIGINT', () => {
+    console.log("SIGINT!!");
+    process.exit();
+});
