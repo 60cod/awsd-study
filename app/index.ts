@@ -13,19 +13,22 @@ const startServer = async () => {
     await client.connect();
 
     const app = createApp(client);
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
         console.log(`App listening at port ${PORT}`);
     });
+
+    return server;
 };
 
-startServer();
+const server = startServer();
 
-// 시그널 잘 받는지 먼저 확인
-process.on('SIGTERM', () => {
-    console.log("SIGTERM!!");
-    process.exit();
-});
-process.on('SIGINT', () => {
-    console.log("SIGINT!!");
-    process.exit();
-});
+const gracefulShutdown = async () => {
+    const _server = await server;
+    _server.close(() => {
+        console.log("graceful shutdown!");
+        process.exit();
+    });
+}
+
+process.on('SIGTERM', gracefulShutdown);
+process.on('SIGINT', gracefulShutdown);
